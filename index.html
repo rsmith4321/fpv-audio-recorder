@@ -26,6 +26,11 @@
     li { padding-left: .25rem; margin: 6px 0; }
     .done { color: #a7eac2; }
     .next { color: #f1d59a; }
+    figure { margin: 24px 0; }
+    figure img { display: block; width: 100%; height: auto; border-radius: 14px; }
+    figcaption { color: #a8b8bf; font-size: .9rem; line-height: 1.5; margin-top: 10px; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .gallery figure { margin: 0; }
     .quiet { color: #a8b8bf; font-size: .92rem; }
     footer { border-top: 1px solid #32434c; margin-top: 60px; padding-top: 20px; }
   </style>
@@ -35,9 +40,11 @@
   <header>
     <div class="eyebrow">Open build log · Updated October 4, 2026</div>
     <h1>FPV Audio Recorder</h1>
-    <p class="lead">A tiny, battery-free recorder that listens to the quad's arm state and saves onboard audio to microSD.</p>
-    <div class="status">Easy Eject bench setup verified · Flight setup in progress</div>
+    <p class="lead">Onboard FPV audio without an extra action camera. A tiny, battery-free recorder designed to save audio to microSD while the quad is armed.</p>
+    <div class="status">Work in progress · Bench audio works</div>
   </header>
+
+  <figure><img src="images/06-audio-recorder-stack.jpg" alt="Real camera-free XIAO Sense recorder prototype with four wires"><figcaption>Ryan’s prototype after camera removal and soldering. Next: flight-controller wiring and props-off arm/disarm testing.</figcaption></figure>
 
   <div class="grid" aria-label="Bench results">
     <div class="card"><strong>120 sec</strong><span>WAV recorded and imported over USB</span></div>
@@ -49,7 +56,20 @@
     <h2>The build</h2>
     <p>Seeed Studio XIAO ESP32S3 Sense, Sense microphone and microSD board, no separate battery. The camera has been removed to save weight. The flight controller will provide regulated power after its exact pads and available current are checked.</p>
     <p>We intend to read Betaflight arm status over a spare UART. The recorder will not issue flight commands. A local Easy Eject preview has flashed the board, monitored chip temperature, and imported a WAV while preserving the microSD original.</p>
-    <p>The microphone opening sits on the exposed face beside the SD slot. A tiny VHB patch between the boards may secure the stack if it fits a flat gap without lifting the connector; the exact placement will be documented from assembly photos.</p>
+    <p>The microphone opening sits on the exposed face beside the SD slot. A tiny VHB patch between the boards may secure the stack if it fits a flat gap without lifting the connector; the exact placement and retention still need testing.</p>
+  </section>
+
+  <section>
+    <h2>Build photographs</h2>
+    <p>Real photographs of this prototype, cropped for a closer view. See the <a href="https://github.com/rsmith4321/fpv-audio-recorder/blob/main/docs/build.md">illustrated build guide</a> for the sequence, wire colors and planned diode connection.</p>
+    <div class="gallery">
+      <figure><a href="images/01-original-stack.jpg"><img loading="lazy" src="images/01-original-stack.jpg" alt="Original Sense stack with camera"></a><figcaption>1. Original camera and Sense stack.</figcaption></figure>
+      <figure><a href="images/02-board-gap.jpg"><img loading="lazy" src="images/02-board-gap.jpg" alt="Side view of two-board gap"></a><figcaption>2. The two-board construction.</figcaption></figure>
+      <figure><a href="images/03-separated-boards.jpg"><img loading="lazy" src="images/03-separated-boards.jpg" alt="Main XIAO and Sense expansion separated"></a><figcaption>3. Boards separated at their connector.</figcaption></figure>
+      <figure><a href="images/04-camera-removed.jpg"><img loading="lazy" src="images/04-camera-removed.jpg" alt="Removed camera beside retained microphone and SD board"></a><figcaption>4. Camera removed; microphone and SD retained.</figcaption></figure>
+      <figure><a href="images/05-soldered-wires.jpg"><img loading="lazy" src="images/05-soldered-wires.jpg" alt="Red black purple and yellow wires on main XIAO"></a><figcaption>5. Four wires on the main XIAO.</figcaption></figure>
+      <figure><a href="images/06-audio-recorder-stack.jpg"><img loading="lazy" src="images/06-audio-recorder-stack.jpg" alt="Reassembled camera-free recorder"></a><figcaption>6. Reassembled audio recorder prototype.</figcaption></figure>
+    </div>
   </section>
 
   <section>
@@ -70,7 +90,7 @@
   </section>
 
   <footer>
-    <p><a href="https://github.com/rsmith4321/fpv-audio-recorder">Source and updates on GitHub</a> · <a href="https://easyeject.com/">Easy Eject</a></p>
+    <p><a href="https://github.com/rsmith4321/fpv-audio-recorder">Source and updates on GitHub</a> · <a href="https://easyeject.com/help/fpv-audio-recorder">Easy Eject setup status</a> · <a href="https://github.com/SebGalina/FPVSoundLogger">Related project: FPVSoundLogger</a></p>
   </footer>
 </main>
 </body>

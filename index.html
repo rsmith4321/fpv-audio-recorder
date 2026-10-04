@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Build progress for a lightweight FPV drone audio recorder using a XIAO ESP32S3 Sense and Easy Eject.">
+  <title>FPV Audio Recorder — Build Progress</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #101720; color: #edf3f6; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { max-width: 900px; margin: auto; padding: 32px 22px 80px; }
+    a { color: #82dbed; }
+    .eyebrow { color: #82dbed; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .76rem; }
+    h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1; letter-spacing: -.05em; margin: 14px 0 20px; }
+    h2 { margin: 0 0 14px; font-size: 1.45rem; }
+    p { line-height: 1.6; color: #c8d2d8; }
+    .lead { font-size: 1.25rem; max-width: 660px; }
+    .status { display: inline-flex; border: 1px solid #3d6c75; background: #18313b; border-radius: 999px; padding: 8px 14px; color: #a3ecf3; font-weight: 700; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 36px 0; }
+    .card { border: 1px solid #32434c; border-radius: 18px; padding: 22px; background: #18242d; }
+    .card strong { display: block; font-size: 1.85rem; color: white; }
+    .card span { color: #b4c3c9; }
+    section { margin-top: 52px; }
+    ol, ul { padding-left: 1.3rem; line-height: 1.75; }
+    li { padding-left: .25rem; margin: 6px 0; }
+    .done { color: #a7eac2; }
+    .next { color: #f1d59a; }
+    .quiet { color: #a8b8bf; font-size: .92rem; }
+    footer { border-top: 1px solid #32434c; margin-top: 60px; padding-top: 20px; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Open build log · Updated October 4, 2026</div>
+    <h1>FPV Audio Recorder</h1>
+    <p class="lead">A tiny, battery-free recorder that listens to the quad's arm state and saves onboard audio to microSD.</p>
+    <div class="status">Bench recording works · Flight setup in progress</div>
+  </header>
+
+  <div class="grid" aria-label="Bench results">
+    <div class="card"><strong>120 sec</strong><span>WAV recorded and imported over USB</span></div>
+    <div class="card"><strong>16 kHz</strong><span>Mono, 16-bit PCM audio</span></div>
+    <div class="card"><strong>67.7°C</strong><span>Highest internal chip reading during the still-air SD save</span></div>
+  </div>
+
+  <section>
+    <h2>The build</h2>
+    <p>Seeed Studio XIAO ESP32S3 Sense, Sense microphone and microSD board, no separate battery. The camera is optional and is being removed to save weight. The flight controller will provide regulated power after its exact pads and available current are checked.</p>
+    <p>We intend to read Betaflight arm status over a spare UART. The recorder will not issue flight commands. Easy Eject will provide first-run firmware setup, temperature monitoring, and a safe WAV import path.</p>
+  </section>
+
+  <section>
+    <h2>Progress</h2>
+    <ol>
+      <li class="done">Complete: microphone, microSD, USB transfer, and two-minute still-air bench recording.</li>
+      <li class="next">In progress: streaming flight firmware and Easy Eject recorder mode.</li>
+      <li>Next: versioned one-click flash package and recovery check.</li>
+      <li>Next: exact flight-controller power and UART wiring, followed by props-off testing.</li>
+      <li>Next: mounted flight audio and thermal check.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Operating note</h2>
+    <p>Give the powered quad airflow whenever it sits still, including while connected to a computer. The two-minute temperature result is a bench observation, not a flight-temperature or long-idle rating.</p>
+    <p class="quiet">The firmware and Easy Eject setup are not yet released. No installer download is offered until the flight behavior and flash path are verified.</p>
+  </section>
+
+  <footer>
+    <p><a href="https://github.com/rsmith4321/fpv-audio-recorder">Source and updates on GitHub</a> · <a href="https://easyeject.com/">Easy Eject</a></p>
+  </footer>
+</main>
+</body>
+</html>

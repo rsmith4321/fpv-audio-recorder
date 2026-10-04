@@ -36,7 +36,7 @@
     <div class="eyebrow">Open build log · Updated October 4, 2026</div>
     <h1>FPV Audio Recorder</h1>
     <p class="lead">A tiny, battery-free recorder that listens to the quad's arm state and saves onboard audio to microSD.</p>
-    <div class="status">Bench recording works · Flight setup in progress</div>
+    <div class="status">Easy Eject bench setup verified · Flight setup in progress</div>
   </header>
 
   <div class="grid" aria-label="Bench results">
@@ -47,16 +47,17 @@
 
   <section>
     <h2>The build</h2>
-    <p>Seeed Studio XIAO ESP32S3 Sense, Sense microphone and microSD board, no separate battery. The camera is optional and is being removed to save weight. The flight controller will provide regulated power after its exact pads and available current are checked.</p>
-    <p>We intend to read Betaflight arm status over a spare UART. The recorder will not issue flight commands. Easy Eject will provide first-run firmware setup, temperature monitoring, and a safe WAV import path.</p>
+    <p>Seeed Studio XIAO ESP32S3 Sense, Sense microphone and microSD board, no separate battery. The camera has been removed to save weight. The flight controller will provide regulated power after its exact pads and available current are checked.</p>
+    <p>We intend to read Betaflight arm status over a spare UART. The recorder will not issue flight commands. A local Easy Eject preview has flashed the board, monitored chip temperature, and imported a WAV while preserving the microSD original.</p>
+    <p>The microphone opening sits on the exposed face beside the SD slot. A tiny VHB patch between the boards may secure the stack if it fits a flat gap without lifting the connector; the exact placement will be documented from assembly photos.</p>
   </section>
 
   <section>
     <h2>Progress</h2>
     <ol>
       <li class="done">Complete: microphone, microSD, USB transfer, and two-minute still-air bench recording.</li>
-      <li class="next">In progress: streaming flight firmware and Easy Eject recorder mode.</li>
-      <li>Next: versioned one-click flash package and recovery check.</li>
+      <li class="done">Complete: local Easy Eject flash, temperature display, and byte-matched WAV import.</li>
+      <li class="next">In progress: streaming flight firmware and release packaging.</li>
       <li>Next: exact flight-controller power and UART wiring, followed by props-off testing.</li>
       <li>Next: mounted flight audio and thermal check.</li>
     </ol>

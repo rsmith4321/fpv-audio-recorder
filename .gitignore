@@ -2,6 +2,7 @@
 *.WAV
 *.wav
 *.bin
+!firmware/v0.1.0-bench/fpv-recorder-setup.bin
 *.elf
 *.log
 .venv/

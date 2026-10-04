@@ -2,7 +2,7 @@
 
 A tiny, battery-free audio recorder for a quadcopter. The build uses a Seeed Studio XIAO ESP32S3 Sense, its microphone and microSD expansion board, and flight-controller power. The intended firmware starts a WAV when the quad arms and closes it when the quad disarms.
 
-**Project status:** Bench recording works. The camera has been removed, and a local Easy Eject preview successfully flashed the recorder, read its temperature, and imported a WAV while leaving the microSD original intact. Flight-controller wiring and arm/disarm behavior still need hardware testing. This is not yet a flight-ready release.
+**Project status:** Bench recording works. The camera has been removed, and a local Easy Eject preview successfully flashed the recorder, read its temperature, and imported a WAV while leaving the microSD original intact. A [bench firmware candidate](firmware/README.md) and version manifest are available for the planned Easy Eject update check. Flight-controller wiring and arm/disarm behavior still need hardware testing. This is not yet a flight-ready release.
 
 The public progress page is at <https://rsmith4321.github.io/fpv-audio-recorder/>.
 
@@ -24,7 +24,7 @@ No flight-controller control commands or recorder-overheat messages are planned.
 
 ## Mounting note
 
-The microphone opening is on the exposed face of the Sense board beside the microSD slot. A very small piece of VHB between the boards may help retain their stack without covering that opening, provided it fits a flat, component-free gap and does not lift the board connector. Keep the microphone opening, USB port, and SD card accessible. The final tape position will be documented after the assembled board is photographed.
+The microphone opening is on the exposed face of the Sense board beside the microSD slot. The four wires are soldered to the inward face of the main XIAO's plated edge pads, with low-profile joints protected inside the gap and wires exiting sideways. Check that the board connector seats fully and no solder touches components on the Sense board. A very small piece of VHB can then help retain the stack in a separate flat, component-free part of the gap without covering the microphone opening. Keep the microphone opening, USB port, and SD card accessible. The final tape position will be documented after the assembled board is photographed.
 
 ## Next milestones
 
@@ -35,4 +35,4 @@ The microphone opening is on the exposed face of the Sense board beside the micr
 
 ## Scope of this repository
 
-This public repository holds the project page and, when ready, reviewed firmware sources and setup documentation. Bench audio, raw flash backups, personal device identifiers, and local build artifacts are intentionally excluded.
+This public repository holds the project page and the versioned bench firmware source and image. Bench audio, raw flash backups, personal device identifiers, and unrelated local build artifacts are intentionally excluded.

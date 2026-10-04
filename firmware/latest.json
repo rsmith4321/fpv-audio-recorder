@@ -1,0 +1,7 @@
+{
+  "hardware": "XIAO_ESP32S3_SENSE_8MB",
+  "version": "0.1.0",
+  "channel": "bench",
+  "image_url": "https://raw.githubusercontent.com/rsmith4321/fpv-audio-recorder/main/firmware/v0.1.0-bench/fpv-recorder-setup.bin",
+  "sha256": "0b3d565a318032e5ed11024304357c186891215fef367c4fd8ef3dd59e57ca18"
+}

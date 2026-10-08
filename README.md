@@ -2,13 +2,13 @@
 
 Onboard FPV audio without carrying an extra GoPro or other action camera. This work in progress is a tiny, battery-free audio recorder for a quadcopter. The build uses a Seeed Studio XIAO ESP32S3 Sense, its microphone and microSD expansion board, and flight-controller power. The intended firmware starts a WAV when the quad arms and closes it when the quad disarms.
 
-**Project status:** Bench recording works. The camera has been removed, and a local Easy Eject preview successfully flashed the recorder, read its temperature, and imported a WAV while leaving the microSD original intact. A [bench firmware candidate](firmware/README.md) and version manifest are available for the planned Easy Eject update check. Flight-controller wiring and arm/disarm behavior still need hardware testing. This is not yet a flight-ready release.
+**Project status:** Bench recording works. The camera has been removed, and a local Easy Eject preview successfully flashed the recorder, read its temperature, and imported a WAV while leaving the microSD original intact. A [bench firmware candidate](firmware/README.md) and version manifest are available for the planned Easy Eject update check. The Flywoo GOKU F405 SE UART1 connector and harness mapping have been identified, and live Betaflight confirms UART1 is unused. The connector installation, 4.5 V supply through the diode, and arm/disarm behavior still need hardware testing. This is not yet a flight-ready release.
 
 The public progress page is at <https://rsmith4321.github.io/fpv-audio-recorder/>.
 
 ![Camera-free recorder prototype](images/06-audio-recorder-stack.jpg)
 
-Follow the [photographed prototype build](docs/build.md) for camera removal, the four recorder wires, and the planned diode connection. **Next: connect the flight controller and test arm/disarm recording with props off.**
+Follow the [photographed prototype build](docs/build.md) for camera removal, the four recorder wires, and the planned diode connection. For the Flywoo build, see the [connector installation plan](docs/flywoo-goku-f405-se.md): no soldering onto the flight controller, using its UART1 socket and supplied harness. **Next: assemble the harness, test its 4.5 V supply through the diode, and test arm/disarm recording with props off.**
 
 ## What has been verified
 
@@ -34,7 +34,7 @@ The microphone opening is on the exposed face of the Sense board beside the micr
 
 - Test the streaming WAV firmware against real Betaflight arm/disarm status.
 - Package the verified local Easy Eject flow for release, with a documented recovery path.
-- Identify exact 5 V, ground, and UART pads on the arriving flight controller.
+- Assemble the identified Flywoo UART1 connector harness and verify power from its 4.5 V output through the diode.
 - Test the assembled quad with props off, then check audio and temperature in flight.
 
 ## Scope of this repository

@@ -38,7 +38,7 @@
 <body>
 <main>
   <header>
-    <div class="eyebrow">Open build log · Updated October 4, 2026</div>
+    <div class="eyebrow">Open build log · Updated October 7, 2026</div>
     <h1>FPV Audio Recorder</h1>
     <p class="lead">Onboard FPV audio without an extra action camera. A tiny, battery-free recorder designed to save audio to microSD while the quad is armed.</p>
     <div class="status">Work in progress · Bench audio works</div>
@@ -54,7 +54,7 @@
 
   <section>
     <h2>The build</h2>
-    <p>Seeed Studio XIAO ESP32S3 Sense, Sense microphone and microSD board, no separate battery. The camera has been removed to save weight. The flight controller will provide regulated power after its exact pads and available current are checked.</p>
+    <p>Seeed Studio XIAO ESP32S3 Sense, Sense microphone and microSD board, no separate battery. The camera has been removed to save weight. A Flywoo UART1 connector and supplied harness have been identified; its 4.5 V power output through the diode still needs testing.</p>
     <p>We intend to read Betaflight arm status over a spare UART. The recorder will not issue flight commands. A local Easy Eject preview has flashed the board, monitored chip temperature, and imported a WAV while preserving the microSD original.</p>
     <p>The microphone opening sits on the exposed face beside the SD slot. A tiny VHB patch between the boards may secure the stack if it fits a flat gap without lifting the connector; the exact placement and retention still need testing.</p>
   </section>
@@ -78,9 +78,17 @@
       <li class="done">Complete: microphone, microSD, USB transfer, and two-minute still-air bench recording.</li>
       <li class="done">Complete: local Easy Eject flash, temperature display, and byte-matched WAV import.</li>
       <li class="next">In progress: streaming flight firmware and release packaging.</li>
-      <li>Next: exact flight-controller power and UART wiring, followed by props-off testing.</li>
+      <li class="done">Identified: Flywoo SE UART1 connector and harness mapping; live Betaflight confirms UART1 is unused.</li>
+      <li>Next: cable splices, diode installation, UART1 MSP setup, 4.5 V power validation and props-off arm/disarm testing.</li>
       <li>Next: mounted flight audio and thermal check.</li>
     </ol>
+  </section>
+
+  <section>
+    <h2>Flywoo connector installation plan</h2>
+    <p>The GOKU F405 SE 20A AIO has an unused UART1 five-position socket. A supplied plug with four wires can connect the recorder without soldering onto the flight controller. Recorder pad wires, cable splices and an inline Schottky diode still require soldering.</p>
+    <figure><img loading="lazy" src="images/07-flywoo-uart1-harness.jpg" alt="Flywoo flight controller with four-wire harness fitted in its five-position UART1 socket"><figcaption>The UART1 socket is at the bottom left in this real photograph, with the board rotated relative to Flywoo’s diagram. The recorder has not yet been attached to this harness.</figcaption></figure>
+    <p>The socket’s 4.5 V supply through the diode is a proposed power source, not a verified recording result. Receiver UART3, GPS UART4 and DJI UART6 are occupied. See the <a href="https://github.com/rsmith4321/fpv-audio-recorder/blob/main/docs/flywoo-goku-f405-se.md">wire mapping, official diagram and pending test steps</a>.</p>
   </section>
 
   <section>

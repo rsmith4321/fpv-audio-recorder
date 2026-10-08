@@ -1,8 +1,8 @@
 # Prototype build: camera removal and recorder wires
 
-**Work in progress — October 4, 2026.** These are Ryan's real build photographs, cropped and lightly sharpened for readability. Solder joints and components have not been retouched. This documents the prototype, not a completed flight-tested installation.
+**Work in progress — updated October 7, 2026.** These are Ryan's real build photographs, cropped and lightly sharpened for readability. Solder joints and components have not been retouched. This documents the prototype, not a completed flight-tested installation.
 
-Bench audio recording, USB retrieval, and a local Easy Eject firmware install/import have worked. The next step is wiring the arriving flight controller and testing recording on arm/disarm with props removed.
+Bench audio recording, USB retrieval, and a local Easy Eject firmware install/import have worked. The Flywoo controller and an unused UART1 connector have now been identified. The next step is assembling the connector harness and testing its supply and arm/disarm recording with props removed. See the [Flywoo connector installation plan](flywoo-goku-f405-se.md).
 
 ## Hardware
 
@@ -66,7 +66,7 @@ After solder inspection and camera removal, use a very small VHB patch in a flat
 
 The diode is not shown installed in these photographs. Fit **one** diode inline in the red lead: the unstriped anode goes toward the flight controller's regulated 5 V supply; the striped cathode goes toward the XIAO VBUS pad. Insulate the diode and both joints with heat shrink. Never connect VBUS directly to quad battery voltage. Seeed specifies a series diode for external power into this pad.
 
-Identify the exact regulated 5 V, ground and spare UART pads when the controller arrives. Verify 3.3 V UART compatibility, configure the selected Betaflight UART for the recorder's MSP connection, and test arm/disarm recording with props removed. The final controller-specific wiring and settings will be added after verification.
+For the Flywoo GOKU F405 SE prototype, the [controller-specific connector plan](flywoo-goku-f405-se.md) uses its unused UART1 five-position socket and a supplied four-wire harness, avoiding soldering onto the flight controller. That socket supplies 4.5 V; operation through the diode is proposed and still needs power and recording tests. The harness splices, diode installation and MSP configuration have not yet been completed. For other controllers, identify the exact regulated supply, ground and spare UART before connecting.
 
 Provide airflow while the powered quad is stationary, including computer setup. The two-minute still-air bench result is an observation, not a long-idle thermal rating. Mounted audio level, temperature, vibration, retention and power-loss behavior remain unverified.
 

@@ -2,7 +2,7 @@
 
 Onboard FPV audio without carrying an extra GoPro or other action camera. This work in progress is a tiny, battery-free audio recorder for a quadcopter. The build uses a Seeed Studio XIAO ESP32S3 Sense, its microphone and microSD expansion board, and flight-controller power. The intended firmware starts a WAV when the quad arms and closes it when the quad disarms.
 
-**Project status:** Bench recording works. The camera has been removed, and a local Easy Eject preview successfully flashed the recorder, read its temperature, and imported a WAV while leaving the microSD original intact. A [bench firmware candidate](firmware/README.md) and version manifest are available for the planned Easy Eject update check. The Flywoo GOKU F405 SE UART1 connector and harness mapping have been identified, and live Betaflight confirms UART1 is unused. The connector installation, 4.5 V supply through the diode, and arm/disarm behavior still need hardware testing. This is not yet a flight-ready release.
+**Project status:** Bench recording works. The camera has been removed, and a local Easy Eject preview successfully flashed the recorder, read its temperature, and imported a WAV while leaving the microSD original intact. A [bench firmware candidate](firmware/README.md) and version manifest are available for the planned Easy Eject update check. The Flywoo GOKU F405 SE UART1 connector and harness mapping have been identified, and live Betaflight confirms UART1 is unused. On October 10, 2026, the harness and diode were installed, the recorder was mounted with VHB, and it recorded on Betaflight arm/disarm while powered from the 4.5 V socket (props-off and indoor hand-held tests). Outdoor flight audio and long-term reliability are still untested. This is not yet a flight-ready release.
 
 The public progress page is at <https://rsmith4321.github.io/fpv-audio-recorder/>.
 
@@ -32,10 +32,9 @@ The microphone opening is on the exposed face of the Sense board beside the micr
 
 ## Next milestones
 
-- Test the streaming WAV firmware against real Betaflight arm/disarm status.
 - Package the verified local Easy Eject flow for release, with a documented recovery path.
-- Assemble the identified Flywoo UART1 connector harness and verify power from its 4.5 V output through the diode.
-- Test the assembled quad with props off, then check audio and temperature in flight.
+- Check audio level, GPS reception and temperature in outdoor flight, and add acoustic damping if the microphone overloads.
+- Publish the level-reduced firmware once flight-tested.
 
 ## Scope of this repository
 

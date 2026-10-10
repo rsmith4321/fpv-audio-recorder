@@ -59,4 +59,42 @@ Before accepting this installation, measure the supply and recorder VBUS voltage
 4. Verify the recorder receives Betaflight armed state, starts on arm and closes the WAV on disarm. Confirm the file plays and repeat the cycle. Do not disable arming protections merely to make this test pass.
 5. Check mounted audio, power reliability, temperature, retention and vibration before any flight claim.
 
-**Current stopping point:** socket and cable identified, live UART1 availability checked, wiring plan documented. Cable splicing, diode installation, UART1 MSP configuration, 4.5V testing and arm/disarm recording remain pending. Ryan is deferring the physical installation to another day.
+## Harness assembled — October 10, 2026
+
+The four splices and the inline diode are soldered and covered with heat shrink. The splices are staggered along the cable so no two joints sit side by side. Red goes to red through the diode, black goes to black, Flywoo white (TX1) goes to the recorder's yellow (D7/RX), and Flywoo yellow (RX1) goes to the recorder's purple (D6/TX). The diode sits inside the larger section of tubing on the red lead. The builder confirmed its striped cathode faces the recorder.
+
+![Spliced harness from the back of the XIAO: red to VBUS, black to GND, yellow to D7, purple to D6](../images/08-harness-spliced-xiao-back.jpg)
+
+![Completed harness from the five-position plug to the recorder](../images/09-harness-spliced-overview.jpg)
+
+![Staggered splices, with the diode inside the red lead's heat shrink](../images/10-harness-spliced-side.jpg)
+
+No multimeter continuity, short or voltage checks have been done on the finished harness yet. Pin assignment comes from Flywoo's diagram and the photo of the plug in the socket.
+
+## Trial mounting on the quad — October 10, 2026
+
+The recorder, with its Sense board attached, sits on the quad's carbon top plate behind the camera, held by a small piece of 3M tape. USB-C, the microSD card and the microphone stay exposed. The harness runs down the side of the frame to the UART1 socket. This is a temporary mount; a small 3D-printed mount is planned.
+
+![Recorder taped to the top plate, microphone and USB-C facing up](../images/11-recorder-on-top-plate.jpg)
+
+![Side view of the recorder on the top plate, with the harness running down the frame](../images/12-recorder-on-top-plate-side.jpg)
+
+![Harness routed past the DJI O4 to the flight controller](../images/13-harness-routing-fc.jpg)
+
+![Harness routing beside the flight controller sockets](../images/14-harness-routing-fc-side.jpg)
+
+Carbon fiber conducts electricity, so the tape must keep every pad and solder joint on the underside and edges of the XIAO off the plate. Secure the harness so it cannot be pinched between plates or standoffs, rub on screw heads, or reach the propellers.
+
+## Final mount and first armed tests — October 10, 2026
+
+The recorder is now held to the top plate with 3M VHB, behind the DJI O4 Air Unit Pro, with the USB-C port, microSD card and microphone facing up. The VHB is foam and does not conduct, so it also keeps the XIAO's underside off the carbon. The recorder firmware leaves Wi-Fi and Bluetooth off, so the only thing near the O4 antennas and the GPS is the small board itself.
+
+![Final mount from above: recorder on the top plate between the O4 and its antennas](../images/15-final-mount-top.jpg)
+
+![Final mount from an angle, showing the harness loop and GPS module](../images/16-final-mount-angle.jpg)
+
+UART1 was set to MSP at 115200 in Betaflight (one line changed; rollback is `serial UART1 0 115200 57600 0 115200`, then `save`). With the recorder's USB unplugged and power coming only from the 4.5 V socket through the diode, arming started a recording and disarming closed a playable WAV. That covered a props-off test and three short indoor hand-held hovers.
+
+The props-off audio was hot, about −14 dBFS on average, with a few clipped samples. A local test firmware (not yet published here) filters out the microphone's DC offset, turns the level down 12 dB, and writes an `RECLOG.TXT` line for each recording. On the indoor hovers it averaged about −30 dBFS with peaks near −12 dBFS and no clipped samples in the files. The peaks show the microphone path was already close to its limit before the turn-down, so louder outdoor flying may still distort. The planned fix is acoustic: foam or a thin layer of tape over the microphone port, or a printed enclosure with a foam-covered port.
+
+**Current stopping point:** harness, diode and VHB mount complete; arm/disarm recording works on quad power. Outdoor flight audio, GPS reception with the recorder powered, temperature, vibration and retention remain unverified.

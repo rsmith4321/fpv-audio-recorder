@@ -97,4 +97,6 @@ UART1 was set to MSP at 115200 in Betaflight (one line changed; rollback is `ser
 
 The props-off audio was hot, about −14 dBFS on average, with a few clipped samples. A local test firmware (not yet published here) filters out the microphone's DC offset, turns the level down 12 dB, and writes an `RECLOG.TXT` line for each recording. On the indoor hovers it averaged about −30 dBFS with peaks near −12 dBFS and no clipped samples in the files. The peaks show the microphone path was already close to its limit before the turn-down, so louder outdoor flying may still distort. The planned fix is acoustic: foam or a thin layer of tape over the microphone port, or a printed enclosure with a foam-covered port.
 
+A [3D-printed holder](../hardware/recorder-holder/README.md) has been designed to replace the bare VHB mount. It hasn't been printed yet.
+
 **Current stopping point:** harness, diode and VHB mount complete; arm/disarm recording works on quad power. Outdoor flight audio, GPS reception with the recorder powered, temperature, vibration and retention remain unverified.

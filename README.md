@@ -30,11 +30,16 @@ No flight-controller control commands or recorder-overheat messages are planned.
 
 The microphone opening is on the exposed face of the Sense board beside the microSD slot. The four wires are soldered to the inward face of the main XIAO's plated edge pads, with low-profile joints protected inside the gap and wires exiting sideways. Check that the board connector seats fully and no solder touches components on the Sense board. A very small piece of VHB can then help retain the stack in a separate flat, component-free part of the gap without covering the microphone opening. Keep the microphone opening, USB port, and SD card accessible. The assembled prototype is photographed in the build guide; the exact tape placement and retention still need testing.
 
+## 3D-printed holder
+
+A small [printable holder](hardware/recorder-holder/README.md) grips the XIAO by its bottom board's edges, leaves the top open, and keeps an air gap above the mounting surface. It was designed from Seeed's official board model; it has not been printed or test-fitted yet.
+
 ## Next milestones
 
 - Package the verified local Easy Eject flow for release, with a documented recovery path.
 - Check audio level, GPS reception and temperature in outdoor flight, and add acoustic damping if the microphone overloads.
 - Publish the level-reduced firmware once flight-tested.
+- Print and test-fit the holder.
 
 ## Scope of this repository
 

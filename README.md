@@ -32,14 +32,14 @@ The microphone opening is on the exposed face of the Sense board beside the micr
 
 ## 3D-printed holder
 
-A small [printable holder](hardware/recorder-holder/README.md) grips the XIAO by its bottom board's edges, leaves the top open, and keeps an air gap above the mounting surface. It was designed from Seeed's official board model; it has not been printed or test-fitted yet.
+The [V6.5 two-piece TPU case](hardware/recorder-holder/README.md) includes a flat tape-mount bottom, flush lid, and USB/microSD access. Editable source, both printable STLs, dimensions, previews, and print notes are included. The builder approved the prior printed fit apart from tight port openings; V6.5 widens both openings by 0.6 mm overall, and that final adjustment has not been reprinted. Alternative designs and improvements are welcome through pull requests or issues.
 
 ## Next milestones
 
 - Package the verified local Easy Eject flow for release, with a documented recovery path.
 - Check audio level, GPS reception and temperature in outdoor flight, and add acoustic damping if the microphone overloads.
 - Publish the level-reduced firmware once flight-tested.
-- Print and test-fit the holder.
+- Reprint/check the final widened V6.5 ports and test case retention, mounting, and acoustic performance.
 
 ## Scope of this repository
 

@@ -1,0 +1,47 @@
+{
+ "recorder-case-v7-sleeve.stl": {
+  "triangles": 1216,
+  "non_manifold_edges": 0,
+  "orientation_errors": 0,
+  "components": 1,
+  "euler_V_E_F": -16,
+  "volume_mm3": 1777.8,
+  "mass_g_TPU_1_21": 2.15,
+  "print_bbox_mm_xyz": [
+   11.18,
+   20.68,
+   23.76
+  ],
+  "min_z": 0.0
+ },
+ "recorder-case-v7-sleeve-socket-removed.stl": {
+  "triangles": 1216,
+  "non_manifold_edges": 0,
+  "orientation_errors": 0,
+  "components": 1,
+  "euler_V_E_F": -16,
+  "volume_mm3": 1755.4,
+  "mass_g_TPU_1_21": 2.12,
+  "print_bbox_mm_xyz": [
+   11.18,
+   20.68,
+   23.76
+  ],
+  "min_z": 0.0
+ },
+ "recorder-case-v7-sleeve.3mf": {
+  "triangles": 1216,
+  "non_manifold_edges": 0,
+  "orientation_errors": 0,
+  "components": 1,
+  "euler_V_E_F": -16,
+  "volume_mm3": 1777.8,
+  "mass_g_TPU_1_21": 2.15,
+  "print_bbox_mm_xyz": [
+   11.18,
+   20.68,
+   23.76
+  ],
+  "min_z": 0.0
+ }
+}

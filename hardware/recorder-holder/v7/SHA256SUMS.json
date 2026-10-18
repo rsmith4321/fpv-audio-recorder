@@ -1,0 +1,23 @@
+{
+  "CONTRIBUTING.md": "cd05c8da93d9bca15866543840de389879f134483d5dc46ab09ba656e0b9bfc9",
+  "README.md": "f6e3555ae16a87eacc3717ca1f9056fdc263df067ea7f11d02254ace2d818694",
+  "RELEASE-NOTES.md": "168bf577a1ab354037a2262a3a57fd65e27c498558ebde7fc249245affd67648",
+  "SPECIFICATIONS.md": "c825aec004a7067f8fe4a5f07983ffbc398c35439dbe5ef409728f0a02e1ca9c",
+  "mesh-validation.json": "1fb63d4352483de8420b23bc379216775f157b9390f12a89280b6ec2ddbe0f69",
+  "recorder-case-v7-sleeve-socket-removed.stl": "ff70b10c1e888bb24562a59f3c5266e0452ea8b2caad9431c9dd5aea7324096a",
+  "recorder-case-v7-sleeve.3mf": "9b37ce79a754afe2a866bf2f77a9f75a1f053bacc3e9074ca8bde88bb9566371",
+  "recorder-case-v7-sleeve.stl": "e3029be36025ff1a9a27359eb4c7aa67ad5c5a6e92d2c13231b56ecef7dc4020",
+  "recorder-case-v7.scad": "d764c5f438164efb3400b92bf3cbf30ef4684de41ea569764960da22879900b8",
+  "v7-cutaway.png": "9bad4c32d77f45e489d50581cbf25cb0c51488274c1acf7babe5b4d32828f774",
+  "v7-open-back.png": "99c06001f6af0437a0a029cdc03a681c6ca167ba6eba4f086e2d1a2b999e0bad",
+  "v7-print-orientation.png": "5d5bcfcff93d8707860660c942d65724beb2016cbc23188124ea2d63582044ef",
+  "v7-socket-removed-variant.png": "57fbbf4c3e873602d4d2fe1137215c4e38a601c2bf0ce8eda420e27b3ce4c8e3",
+  "v7-top-mic-and-buttons.png": "afbb8dbfef2b3ab3709d17b02ab1bd1d5c111bf3a23c56d58610e11d480e55e7",
+  "v7-usb-end.png": "6d3ed4a86414ed6ef8bfa9c7e338b326e5f1271ae1c96b7fe02b8f83f5d5146a",
+  "photos/v7-on-drone-angle.jpg": "54e37f05315faaf225045bf0bcb2ab4d21879893aaa1301e76213b04a74a3092",
+  "photos/v7-on-drone-rear.jpg": "6cf945d86cfd95e478fbc0bf7a839114bd754a566f40dc02390254a1d135e3ce",
+  "photos/v7-on-drone-top.jpg": "cdf3b1c22a64bbf0ac6be894ac76cffea40392a19f689c5639f7b730fdf1cddb",
+  "photos/v7-on-drone.jpg": "97e5fdce42233f3fa4239b5ac4471f3886dcd31b9bb9abfd704b9cc620ca0d8e",
+  "photos/v7-open-back.jpg": "0345aa3d60b36da83d449ff013665bcdb03db03aba8f5a3589be200d068fd6e1",
+  "photos/v7-usb-end.jpg": "f8a81067376e2499975109a57c1b29db002444cf07bc0ad3a2ffc9deb3fbd953"
+}

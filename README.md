@@ -1,50 +1,66 @@
 # FPV Audio Recorder
 
-Onboard FPV audio without carrying an extra GoPro or other action camera. This work in progress is a tiny, battery-free audio recorder for a quadcopter. The build uses a Seeed Studio XIAO ESP32S3 Sense, its microphone and microSD expansion board, and flight-controller power. The intended firmware starts a WAV when the quad arms and closes it when the quad disarms.
+Onboard FPV audio without carrying an extra GoPro or other action camera. This work in progress is a tiny, battery-free audio recorder for a quadcopter. The build uses a Seeed Studio XIAO ESP32S3 Sense with its microphone board, powered from the flight controller. The firmware starts a recording when the quad arms and closes it when the quad disarms.
 
-**Project status:** Bench recording works. The camera has been removed, and a local Easy Eject preview successfully flashed the recorder, read its temperature, and imported a WAV while leaving the microSD original intact. A [bench firmware candidate](firmware/README.md) and version manifest are available for the planned Easy Eject update check. The Flywoo GOKU F405 SE UART1 connector and harness mapping have been identified, and live Betaflight confirms UART1 is unused. On October 10, 2026, the harness and diode were installed, the recorder was mounted with VHB, and it recorded on Betaflight arm/disarm while powered from the 4.5 V socket (props-off and indoor hand-held tests). Outdoor flight audio and long-term reliability are still untested. This is not yet a flight-ready release.
+**Project status:** Pre-release, bench-tested 2026-10-18; flight test pending. [Firmware v2](firmware/v2/README.md) records to the XIAO's internal flash (no microSD) and shows up on a computer as a read-only USB drive with one timestamped WAV per flight. It was flashed and tested on the bench over USB. The [V7 one-piece case](hardware/recorder-holder/README.md) has been printed in TPU, fitted and mounted on the drone. Earlier, on October 10, 2026, the earlier microSD firmware recorded on Betaflight arm/disarm with the harness and diode installed (props-off and indoor hand-held tests), and the first real-flight recordings followed on October 13. Firmware v2 has not yet recorded a flight or a live arm/disarm, and the V7 case hasn't been flown. This is not yet a flight-proven release.
 
 The public progress page is at <https://rsmith4321.github.io/fpv-audio-recorder/>.
 
 ![Camera-free recorder prototype](images/06-audio-recorder-stack.jpg)
 
-Follow the [photographed prototype build](docs/build.md) for camera removal, the four recorder wires, and the planned diode connection. For the Flywoo build, see the [connector installation plan](docs/flywoo-goku-f405-se.md): no soldering onto the flight controller, using its UART1 socket and supplied harness. **Next: assemble the harness, test its 4.5 V supply through the diode, and test arm/disarm recording with props off.**
+Follow the [photographed prototype build](docs/build.md) for camera removal, the four recorder wires, and the planned diode connection. For the Flywoo build, see the [connector installation plan](docs/flywoo-goku-f405-se.md): no soldering onto the flight controller, using its UART1 socket and supplied harness. **Next: flight-test firmware v2 in the V7 case.**
 
 ## What has been verified
 
-- A 120-second mono, 16 kHz, 16-bit WAV was recorded to microSD and retrieved over USB.
-- With no airflow, the ESP32-S3 internal temperature rose from 50.7°C at the start to 65.7°C when recording finished, reaching 67.7°C during the SD save. This was a bench test, not a mounted flight or long stationary test.
-- The current audio level did not clip in a quiet speaker test. Propeller noise has not been recorded yet.
-- After camera removal, the recorder microphone, microSD, and USB connection still worked. The imported WAV matched the original byte for byte.
+Firmware v2 (bench, 2026-10-18, USB power):
 
-## Planned first-run flow
+- The recorder mounts in macOS as the read-only `FPVAUDIO` drive, and recordings from the earlier firmware survived the update.
+- Audio copied from the drive matches the serial download; copying runs at 9–10× real time.
+- A bench-clock recording got the right timestamped name and matching times in `FLIGHTS.CSV` and the WAV's time reference, with 0 lost frames. Chip temperature stayed near 40°C without airflow, well below the SD firmware's 50–68°C.
+- The B-button format erased everything without a restart.
 
-1. Connect the XIAO Sense to a Mac using a USB data cable.
-2. Easy Eject checks the board and installs a versioned recorder firmware image; the removable microSD recordings are left in place.
-3. Easy Eject shows chip temperature and imports WAV files from microSD, leaving originals on the card by default.
-4. On the quad, the recorder reads armed state from Betaflight over a spare UART and records while armed.
+Earlier microSD firmware (v0.1.0, then a −12 dB gain build that wasn't published separately):
 
-No flight-controller control commands or recorder-overheat messages are planned. Provide airflow whenever the powered quad is stationary, including USB setup.
+- Recorded on Betaflight arm/disarm from the flight controller's 4.5 V socket through the diode (October 10), then 16 outdoor flight recordings on October 13 with every file closed cleanly and no clipped samples.
+
+## Using it
+
+1. Fly: the recorder reads armed state from Betaflight over a spare UART (read-only) and records while armed. It never sends flight commands.
+2. Plug the recorder into a computer with a USB-C data cable and copy the WAVs off the `FPVAUDIO` drive.
+3. Optionally run `audio_video_sync.py` to line the audio up with DJI O4 Pro clips.
+
+Provide airflow whenever the powered quad is stationary, including USB setup.
 
 ## Mounting note
 
-The microphone opening is on the exposed face of the Sense board beside the microSD slot. The four wires are soldered to the inward face of the main XIAO's plated edge pads, with low-profile joints protected inside the gap and wires exiting sideways. Check that the board connector seats fully and no solder touches components on the Sense board. A very small piece of VHB can then help retain the stack in a separate flat, component-free part of the gap without covering the microphone opening. Keep the microphone opening, USB port, and SD card accessible. The assembled prototype is photographed in the build guide; the exact tape placement and retention still need testing.
+The microphone opening is on the exposed face of the Sense board. The four wires are soldered to the inward face of the main XIAO's plated edge pads, with low-profile joints protected inside the gap and wires exiting sideways. Check that the board connector seats fully and no solder touches components on the Sense board. In the V7 case the stack slides in from the open back and the wires leave through it; secure the harness to the frame, and keep glue well away from the microphone.
 
-## 3D-printed holder
+## Firmware v2: the recorder as a USB drive
 
-The [V6.5 two-piece TPU case](hardware/recorder-holder/README.md) includes a flat tape-mount bottom, flush lid, and USB/microSD access. Editable source, both printable STLs, dimensions, previews, and print notes are included. The builder approved the prior printed fit apart from tight port openings; V6.5 widens both openings by 0.6 mm overall, and that final adjustment has not been reprinted. Alternative designs and improvements are welcome through pull requests or issues.
+[Firmware v2](firmware/v2/README.md) (pre-release, bench-tested 2026-10-18; flight test pending):
+
+- Plug the recorder into a computer and it appears as a read-only USB drive, `FPVAUDIO`, with **one WAV per flight**, `FLIGHTS.CSV` and a `README.TXT`.
+- Files are named by the flight controller's clock, e.g. `FPV_20261018173825_P0005_F01.WAV`, and carry a Broadcast WAV time reference so editors can place them by time of day.
+- About 30 minutes fit in the internal flash; the **oldest audio is overwritten** when it's full.
+- **Format:** hold the button marked **B** for about 10 seconds while steadying the plug; the LED blinks, blinks faster, then gives **three long flashes** when everything is erased.
+- Host tools download over USB serial and line the audio up with DJI O4 Pro clips.
+
+## 3D-printed case
+
+The [V7 one-piece TPU sleeve](hardware/recorder-holder/README.md) (23.76 × 20.68 × 11.18 mm, 2.15 g) holds the SD-free recorder, which slides in from the back with no lid or glue. It has a mic grille and B/R button holes. Print it standing, USB face down, as saved, and dry the TPU first. **Bench-tested 2026-10-18; flight test pending.** The previous [V6.5 two-piece case](hardware/recorder-holder/v6.5/README.md) remains for microSD builds. Alternative designs and improvements are welcome through pull requests or issues.
+
+![V7 case on the drone](hardware/recorder-holder/v7/photos/v7-on-drone.jpg)
 
 ## Next milestones
 
+- Flight-test firmware v2 and the V7 case: arm/disarm with the flight controller's clock, audio level, wind noise, retention and temperature.
+- Update the Easy Eject recorder mode to find the v2 USB device, then move `firmware/latest.json` to v2.
 - Package the verified local Easy Eject flow for release, with a documented recovery path.
-- Check audio level, GPS reception and temperature in outdoor flight, and add acoustic damping if the microphone overloads.
-- Publish the level-reduced firmware once flight-tested.
-- Reprint/check the final widened V6.5 ports and test case retention, mounting, and acoustic performance.
 
 ## Scope of this repository
 
-This public repository holds the project page and the versioned bench firmware source and image. Bench audio, raw flash backups, personal device identifiers, and unrelated local build artifacts are intentionally excluded.
+This public repository holds the project page, the case designs, and the versioned firmware source and images. Bench audio, personal recordings, raw flash backups, personal device identifiers, and unrelated local build artifacts are intentionally excluded.
 
 ## Related work
 
-[FPVSoundLogger](https://github.com/SebGalina/FPVSoundLogger) is another open-source approach to onboard FPV audio recording. This project explores a XIAO Sense with integrated microphone/microSD and Easy Eject setup and import.
+[FPVSoundLogger](https://github.com/SebGalina/FPVSoundLogger) is another open-source approach to onboard FPV audio recording. This project explores a XIAO Sense with its integrated microphone, recording to internal flash and appearing as a USB drive.

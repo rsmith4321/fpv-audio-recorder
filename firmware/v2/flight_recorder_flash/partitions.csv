@@ -1,0 +1,5 @@
+# Name,   Type, SubType, Offset,   Size
+# Small factory app (firmware is about 500 KB) and one raw "rec" partition for audio.
+nvs,      data, nvs,     0x9000,   0x5000
+factory,  app,  factory, 0x10000,  0xA0000
+rec,      data, 0x40,    0xB0000,  0x750000

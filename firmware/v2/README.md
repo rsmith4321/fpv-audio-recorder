@@ -1,6 +1,8 @@
 # Recorder firmware v2: USB drive, one file per flight
 
-**Status: bench-tested 2026-10-18; flight test pending (pre-release).** Flashed and tested on the recorder over USB. It has not yet recorded a real flight, and arm/disarm with a live flight controller and its clock has not been tested with this version.
+**Status: real-flight recording verified 2026-10-22; download remains a pre-release.** The published v2 build recorded in the V7 case using live Betaflight arm/disarm and the flight controller's clock. The two retained recordings are 110.18 s and 2.82 s, both closed on `DISARM`, with intact starts and zero missing encoded frames. See the [flight-test report](../../docs/flight-test-2026-10-22.md).
+
+**Known issue:** USB sometimes fails to appear on a cold connection until the recorder is reset. A local USB startup candidate was installed after the flight; it is not included in this published v2 source or binary, and has not been flight-tested. Repeated USB startup validation remains incomplete.
 
 Firmware v2 drops the microSD card. The recorder stores audio in the XIAO ESP32S3's own 8 MB flash, and when you plug it into a computer it shows up as a USB drive, like a memory card.
 
@@ -76,7 +78,7 @@ arduino-cli compile \
 In [`host-tools/`](host-tools/):
 
 - **`fetch_flash_recordings.py`** (needs `pyserial` and `ffmpeg`): finds the recorder by its USB name ("FPV Audio Recorder") without sending anything to other ports, and downloads recordings over the serial port as Ogg Opus plus WAV. Also `--list`, `--status`, `--wipe`, and `--set-clock` to give the recorder the computer's time and zone for bench tests.
-- **`audio_video_sync.py`** (needs `numpy`, `scipy` and `ffmpeg`): pairs recorder WAVs with DJI O4 Pro clips by time, then lines them up to about 10 ms by matching prop noise in the audio against the vibration in the O4's gyro data. It writes a clip-length WAV per matched clip and `sync-report.csv` to `~/Movies/<date> FPV audio sync/` (or `--out`); `--mux` also writes MP4 copies with the audio added. It never writes next to the source clips. It needs the `gyro2bb` tool from [telemetry-parser](https://github.com/AdrianEddy/telemetry-parser), built and placed at `host-tools/tools/gyro2bb`.
+- **`audio_video_sync.py`** (needs `numpy`, `scipy` and `ffmpeg`): pairs recorder WAVs with DJI O4 Pro clips by time, then estimates their offset by matching prop noise in the audio against vibration in the O4's gyro data. Check the match report and playback; the tool's timing resolution is not a guarantee of sync accuracy. It writes a clip-length WAV per matched clip and `sync-report.csv` to `~/Movies/<date> FPV audio sync/` (or `--out`); `--mux` also writes MP4 copies with the audio added. It never writes next to the source clips. It needs the `gyro2bb` tool from [telemetry-parser](https://github.com/AdrianEddy/telemetry-parser), built and placed at `host-tools/tools/gyro2bb`.
 
   ```sh
   python3 audio_video_sync.py /Volumes/FPVAUDIO "/path/to/DJI clips"
@@ -95,8 +97,15 @@ In [`host-tools/`](host-tools/):
 - The B-button format worked on the board (the drive came back empty, no restart).
 - The published binary was built from the same source as the firmware on the bench board.
 
-## Not yet tested
+## Real-flight result (2026-10-22)
 
-- A real flight, and arm/disarm with a live flight controller and its clock on this version.
-- Power loss during flight, temperature in flight, and long-term reliability.
+- Two retained WAVs match their `FLIGHTS.CSV` durations: 110.18 s and 2.82 s, 16 kHz mono signed 16-bit PCM.
+- Both entries report `DISARM`, `FC` clock and `start_overwritten=no`. Raw Opus retrieval reports zero missing encoded frames in both streams.
+- The main recording’s decoded peak is −7.64 dBFS. This does not rule out microphone overload before digital attenuation; see the [audio analysis limits](../../docs/flight-test-2026-10-22.md#what-the-audio-establishes).
+- This flight predates the local USB startup candidate. The published v2 source, images and flash offsets are unchanged.
+
+## Remaining validation and integration
+
+- Repeated USB cold starts and reconnects, late USB insertion while externally powered, and flight-controller-triggered recording under the local candidate. Testing remains incomplete after a harness wire needed resoldering.
+- Power loss during flight, temperature in flight, repeated-flight reliability and wind-noise protection.
 - Easy Eject: its experimental recorder mode looks for the old USB ID and doesn't find v2 yet, so [`../latest.json`](../latest.json) still points at the v0.1.0 bench image.

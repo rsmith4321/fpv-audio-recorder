@@ -2,7 +2,7 @@
 
 ## Current: firmware v2 (pre-release)
 
-[Firmware v2](v2/README.md) records to the XIAO ESP32S3's internal flash instead of microSD and shows up on a computer as a read-only USB drive, `FPVAUDIO`, with one WAV per flight, timestamped from the flight controller's clock. About 30 minutes fit, and the oldest audio is overwritten when it's full. **Bench-tested 2026-10-18; flight test pending.** Source, a flashable image, host tools and a host test are in [`v2/`](v2/).
+[Firmware v2](v2/README.md) records to the XIAO ESP32S3's internal flash instead of microSD and shows up on a computer as a read-only USB drive, `FPVAUDIO`, with one WAV per flight, timestamped from the flight controller's clock. About 30 minutes fit, and the oldest audio is overwritten when it's full. **Flown in the V7 case on 2026-10-22**, with 110.18 s and 2.82 s recordings closed on disarm, flight-controller timestamps and zero missing encoded frames. See the [flight-test report](../docs/flight-test-2026-10-22.md). USB startup reliability remains under investigation; a newer local candidate was installed after the flight and is not included in this release. Source, a flashable image, host tools and a host test are in [`v2/`](v2/).
 
 ## Previous: v0.1.0 bench candidate (microSD)
 

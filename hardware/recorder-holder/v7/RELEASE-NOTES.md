@@ -2,7 +2,7 @@
 
 A one-piece slide-in TPU sleeve for the camera-free XIAO ESP32S3 Sense recorder running the SD-free firmware v2. No lid and no glue: the board stack slides in from the open back and clicks over a small floor detent.
 
-**Bench-tested 2026-10-18; flight test pending.** Printed in TPU, fitted ("slides in nice and tight") and mounted on the drone, but not flown yet.
+**Flight update, 2026-10-22:** the printed V7 sleeve flew with the SD-free firmware v2 recorder installed. See the [flight-test report](../../../docs/flight-test-2026-10-22.md). The case design and release assets are unchanged; the download remains a pre-release.
 
 - **23.76 × 20.68 × 11.18 mm, 2.15 g** in TPU (V6.5: two parts, about 4.1 g).
 - No microSD access. The recorder now stores audio in internal flash and shows up as a USB drive.
@@ -13,6 +13,6 @@ A one-piece slide-in TPU sleeve for the camera-free XIAO ESP32S3 Sense recorder 
 
 **Print it standing, USB face down, as saved.** Dry the TPU first to avoid stringing; my first print, laid flat with damp filament, came out stringy.
 
-Not yet tested: flight retention, vibration, wind noise and in-flight temperature.
+Remaining validation: repeated-flight retention, measured vibration, wind-noise protection and in-flight temperature.
 
 I'm new to 3D printing, so there's probably a better way to design this case. If you come up with a different or improved design, please submit a pull request! Issues with ideas, photos, or printable files are welcome too.

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Build progress for a lightweight FPV drone audio recorder using a XIAO ESP32S3 Sense and Easy Eject.">
-  <title>FPV Audio Recorder — Build Progress</title>
+  <meta name="description" content="A completed DIY FPV audio recorder build using a XIAO ESP32S3 Sense, internal flash and a printed TPU case, with a real-flight sample and documented USB follow-up.">
+  <title>FPV Audio Recorder — Build and Flight Test</title>
   <style>
     :root { color-scheme: dark; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #101720; color: #edf3f6; }
     * { box-sizing: border-box; }
@@ -27,6 +27,7 @@
     .done { color: #a7eac2; }
     .next { color: #f1d59a; }
     figure { margin: 24px 0; }
+    video { display: block; width: 100%; height: auto; border-radius: 14px; background: #000; }
     figure img { display: block; width: 100%; height: auto; border-radius: 14px; }
     figcaption { color: #a8b8bf; font-size: .9rem; line-height: 1.5; margin-top: 10px; }
     .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
@@ -39,19 +40,31 @@
 <body>
 <main>
   <header>
-    <div class="eyebrow">Open build log · Updated October 18, 2026</div>
+    <div class="eyebrow">Open DIY project · Updated October 22, 2026</div>
     <h1>FPV Audio Recorder</h1>
     <p class="lead">Onboard FPV audio without an extra action camera. A tiny, battery-free recorder that saves audio while the quad is armed and shows up as a USB drive when you plug it in.</p>
-    <div class="status">Pre-release · Bench-tested 2026-10-18; flight test pending</div>
+    <div class="status">Core build complete · Real-flight test October 22, 2026</div>
   </header>
 
-  <figure><img src="images/06-audio-recorder-stack.jpg" alt="Real camera-free XIAO Sense recorder prototype with four wires"><figcaption>Ryan’s prototype after camera removal and soldering. Next: flight-controller wiring and props-off arm/disarm testing.</figcaption></figure>
+  <figure><img src="images/06-audio-recorder-stack.jpg" alt="Real camera-free XIAO Sense recorder prototype with four wires"><figcaption>The camera-free XIAO Sense recorder prototype after removal of the camera and soldering of its four wires.</figcaption></figure>
 
-  <div class="grid" aria-label="Bench results">
+  <div class="grid" aria-label="Build specifications">
     <div class="card"><strong>30 min</strong><span>Audio stored in internal flash, oldest overwritten when full</span></div>
     <div class="card"><strong>1 WAV</strong><span>Per flight, timestamped, on a plug-in USB drive</span></div>
     <div class="card"><strong>2.15 g</strong><span>One-piece V7 TPU case</span></div>
   </div>
+
+  <section id="flight-test">
+    <h2>The real-flight result</h2>
+    <p>The SD-free firmware v2 flew in the printed V7 case and retained a 110.18-second onboard recording with zero missing encoded frames. Recording followed Betaflight arm/disarm and used the flight controller’s clock.</p>
+    <video controls preload="metadata" playsinline aria-label="Flight-test video with onboard recorder audio">
+      <source src="docs/media/flight-test-2026-10-22.mp4" type="video/mp4">
+      <a href="docs/media/flight-test-2026-10-22.mp4">Download the flight-test video with onboard audio</a>.
+    </video>
+    <p class="quiet">An 87-second selected excerpt, stabilized and color-graded in GyroGrade, with the matching onboard recording. No music or gain adjustment.</p>
+    <p><a href="docs/media/flight-test-2026-10-22.mp4">Download the flight sample</a> · <a href="https://github.com/rsmith4321/fpv-audio-recorder/blob/main/docs/flight-test-2026-10-22.md">Measurements and field-test report</a></p>
+    <p class="quiet">Known issues: USB sometimes needs a recorder reset before the drive appears. Easy Eject does not yet support v2, and downloads remain pre-releases. See the field-test report for the post-flight USB candidate and remaining validation.</p>
+  </section>
 
   <section>
     <h2>The build</h2>
@@ -62,7 +75,7 @@
 
   <section>
     <h2>Build photographs</h2>
-    <p>Real photographs of this prototype, cropped for a closer view. See the <a href="https://github.com/rsmith4321/fpv-audio-recorder/blob/main/docs/build.md">illustrated build guide</a> for the sequence, wire colors and planned diode connection.</p>
+    <p>Real photographs of this prototype, cropped for a closer view. See the <a href="https://github.com/rsmith4321/fpv-audio-recorder/blob/main/docs/build.md">illustrated build guide</a> for the sequence, wire colors and diode connection.</p>
     <div class="gallery">
       <figure><a href="images/01-original-stack.jpg"><img loading="lazy" src="images/01-original-stack.jpg" alt="Original Sense stack with camera"></a><figcaption>1. Original camera and Sense stack.</figcaption></figure>
       <figure><a href="images/02-board-gap.jpg"><img loading="lazy" src="images/02-board-gap.jpg" alt="Side view of two-board gap"></a><figcaption>2. The two-board construction.</figcaption></figure>
@@ -82,21 +95,22 @@
       <li class="done">Complete: first outdoor flight recordings with the microSD firmware (October 13).</li>
       <li class="done">Bench-tested: firmware v2, internal flash, USB drive, one timestamped WAV per flight, B-button format (October 18).</li>
       <li class="done">Printed and mounted: V7 one-piece TPU case (October 18).</li>
-      <li class="next">Next: flight test of firmware v2 in the V7 case, including arm/disarm with the flight controller’s clock.</li>
+      <li class="done">Complete: firmware v2 and V7 real-flight milestone, with disarm endings, flight-controller timestamps and intact audio (October 22).</li>
+      <li class="next">Follow-up: finish USB startup/reconnect validation.</li>
       <li>Next: Easy Eject support for firmware v2.</li>
     </ol>
   </section>
 
   <section>
-    <h2>Flywoo connector installation plan</h2>
+    <h2>Flywoo connector installation</h2>
     <p>The GOKU F405 SE 20A AIO has an unused UART1 five-position socket. A supplied plug with four wires can connect the recorder without soldering onto the flight controller. Recorder pad wires, cable splices and an inline Schottky diode still require soldering.</p>
-    <figure><img loading="lazy" src="images/07-flywoo-uart1-harness.jpg" alt="Flywoo flight controller with four-wire harness fitted in its five-position UART1 socket"><figcaption>The UART1 socket is at the bottom left in this real photograph, with the board rotated relative to Flywoo’s diagram. The recorder has not yet been attached to this harness.</figcaption></figure>
-    <p>The socket’s 4.5 V supply through the diode is a proposed power source, not a verified recording result. Receiver UART3, GPS UART4 and DJI UART6 are occupied. See the <a href="https://github.com/rsmith4321/fpv-audio-recorder/blob/main/docs/flywoo-goku-f405-se.md">wire mapping, official diagram and pending test steps</a>.</p>
+    <figure><img loading="lazy" src="images/07-flywoo-uart1-harness.jpg" alt="Flywoo flight controller with four-wire harness fitted in its five-position UART1 socket"><figcaption>The UART1 socket is at the bottom left in this real photograph, with the board rotated relative to Flywoo’s diagram. This photograph shows an early installation step; the harness was subsequently connected and used for arm/disarm recording.</figcaption></figure>
+    <p>The recorder was powered through the harness and diode for flight-controller-triggered recording. See the <a href="https://github.com/rsmith4321/fpv-audio-recorder/blob/main/docs/flywoo-goku-f405-se.md">wire mapping, official diagram and installation notes</a>.</p>
   </section>
 
   <section id="firmware">
     <h2>Firmware v2: the recorder as a USB drive</h2>
-    <p><strong>Bench-tested 2026-10-18; flight test pending.</strong> Firmware v2 records to the XIAO’s own 8 MB flash instead of microSD.</p>
+    <p><strong>Flown in the V7 case on 2026-10-22.</strong> Firmware v2 records to the XIAO’s own 8 MB flash instead of microSD.</p>
     <ul>
       <li>Plug it into a computer and it appears as a read-only USB drive called <code>FPVAUDIO</code>, with <strong>one WAV per flight</strong>, <code>FLIGHTS.CSV</code> and a <code>README.TXT</code>.</li>
       <li>Files are named by the flight controller’s clock, for example <code>FPV_20261018173825_P0005_F01.WAV</code>, and carry a Broadcast WAV time reference so editors can place them by time of day.</li>
@@ -104,14 +118,13 @@
       <li>To erase everything, hold the button marked <strong>B</strong> for about 10 seconds while steadying the USB plug. The LED blinks, blinks faster, then gives three long flashes.</li>
       <li>Host tools download over USB serial and line the audio up with DJI O4 Pro clips.</li>
     </ul>
-    <p><a href="https://github.com/rsmith4321/fpv-audio-recorder/releases/tag/fw-v2">Download firmware v2</a> · <a href="https://github.com/rsmith4321/fpv-audio-recorder/tree/main/firmware/v2">Source, install steps and bench results</a></p>
-    <p class="quiet">Not yet tested with v2: a real flight, and arm/disarm with a live flight controller and its clock.</p>
+    <p><a href="https://github.com/rsmith4321/fpv-audio-recorder/releases/tag/fw-v2">Download firmware v2</a> · <a href="https://github.com/rsmith4321/fpv-audio-recorder/tree/main/firmware/v2">Source, install steps and test results</a></p>
   </section>
 
   <section id="case">
     <h2>Printable recorder case: V7 sleeve</h2>
     <p>A one-piece TPU sleeve, 23.76 × 20.68 × 11.18 mm and 2.15 g. The board stack slides in from the open back and clicks over a small floor detent, with no lid and no glue. The roof has a mic grille and holes for the B and R buttons, and the flat underside takes mounting tape. Print it standing, USB face down, as saved, and dry the TPU first to avoid stringing.</p>
-    <p><strong>Bench-tested 2026-10-18; flight test pending.</strong> Printed, fitted and mounted on the drone, not flown yet.</p>
+    <p><strong>Flown with firmware v2 on 2026-10-22.</strong> Printed, fitted and mounted on the drone.</p>
     <p><a href="https://github.com/rsmith4321/fpv-audio-recorder/releases/tag/case-v7">Download the V7 case</a> · <a href="https://github.com/rsmith4321/fpv-audio-recorder/tree/main/hardware/recorder-holder/v7">Editable source, dimensions, and print notes</a></p>
     <div class="gallery">
       <figure><a href="hardware/recorder-holder/v7/photos/v7-on-drone.jpg"><img loading="lazy" src="hardware/recorder-holder/v7/photos/v7-on-drone.jpg" alt="V7 recorder case mounted on the drone"></a><figcaption>V7 mounted on the drone.</figcaption></figure>
@@ -126,7 +139,6 @@
   <section>
     <h2>Operating note</h2>
     <p>Give the powered quad airflow whenever it sits still, including while connected to a computer. Bench chip temperatures (about 40°C with firmware v2 on USB, no airflow) are observations, not a flight-temperature or long-idle rating.</p>
-    <p class="quiet">Firmware v2 and the V7 case are pre-releases: bench-tested, not yet flight-tested. The Easy Eject integration is still a local preview and doesn’t recognise firmware v2 yet.</p>
   </section>
 
   <footer>

@@ -4,7 +4,7 @@
 
 The [V7 one-piece TPU sleeve](v7/README.md) is for the SD-free recorder running [firmware v2](../../firmware/v2/README.md). The board stack slides in from the open back and clicks over a small floor detent; there's no lid and no glue. The roof has a mic grille and B/R button holes, the USB window fits the receptacle, and the flat underside takes mounting tape. 23.76 × 20.68 × 11.18 mm, 2.15 g in TPU.
 
-**Bench-tested 2026-10-18; flight test pending.** Printed, fitted and mounted on the drone, not flown yet.
+**Flown with firmware v2 on 2026-10-22.** This printed sleeve carried the recorder during the [real-flight test](../../docs/flight-test-2026-10-22.md). Repeated-flight retention, vibration, wind-noise protection and in-flight temperature remain unmeasured; the download remains a pre-release.
 
 - [Sleeve STL](v7/recorder-case-v7-sleeve.stl) and [3MF](v7/recorder-case-v7-sleeve.3mf) (print standing, USB face down, as saved)
 - [Socket-removed variant STL](v7/recorder-case-v7-sleeve-socket-removed.stl)

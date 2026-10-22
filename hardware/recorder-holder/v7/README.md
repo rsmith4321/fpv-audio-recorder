@@ -2,7 +2,7 @@
 
 A one-piece slide-in sleeve for the camera-free Seeed Studio XIAO ESP32S3 Sense recorder running the SD-free [firmware v2](../../../firmware/v2/README.md). There is no lid and nothing to glue. The board stack slides in from the open back until the main board meets the front wall, and the USB-C port lines up with a window sized to the receptacle. A snug side fit and a small floor detent hold it. The roof has a mic grille and poke holes for the B (BOOT) and R (RESET) buttons, the wires leave through the open back, and the flat underside takes mounting tape.
 
-**Status: bench-tested 2026-10-18; flight test pending.** The sleeve has been printed in TPU, the recorder fits snugly ("slides in nice and tight"), and it is mounted on a Flywoo Firefly 25 Mini. It has not been flown yet, so flight retention, wind noise and vibration are untested. This is a pre-release.
+**Status: flown with firmware v2 on 2026-10-22; download remains a pre-release.** The sleeve has been printed in TPU, fitted and mounted on a Flywoo Firefly 25 Mini, then flown with the recorder installed. The [flight-test report](../../../docs/flight-test-2026-10-22.md) documents the retained audio. This establishes use in a real flight; repeated-flight retention, measured vibration, wind-noise protection and in-flight temperature remain separate validation work.
 
 ![V7 on the drone](photos/v7-on-drone.jpg)
 

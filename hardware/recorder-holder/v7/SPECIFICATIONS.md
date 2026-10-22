@@ -49,4 +49,5 @@ The default `part = "print"` is already oriented for printing (USB face down). O
 - Re-exporting both variants from `recorder-case-v7.scad` gives the same triangle count, volume and size as the published meshes.
 - Collision check against a simplified board model built from the Seeed STEP data, seated and while riding over the detent: the only contact is where the board rests on the floor.
 - Physical: the default sleeve was printed in TPU on 2026-10-18. The board slides in snugly, the USB port lines up, and the case is VHB-mounted on a Flywoo Firefly 25 Mini.
-- **Not yet tested:** flight retention, vibration, wind noise through the grille, and temperature in flight.
+- The installed recorder flew in the V7 sleeve on 2026-10-22 and retained onboard audio; see the [field-test report](../../../docs/flight-test-2026-10-22.md).
+- **Remaining evaluation:** repeated-flight retention, measured vibration, wind-noise protection through the grille, and temperature in flight.

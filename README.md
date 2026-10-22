@@ -1,16 +1,24 @@
 # FPV Audio Recorder
 
-Onboard FPV audio without carrying an extra GoPro or other action camera. This work in progress is a tiny, battery-free audio recorder for a quadcopter. The build uses a Seeed Studio XIAO ESP32S3 Sense with its microphone board, powered from the flight controller. The firmware starts a recording when the quad arms and closes it when the quad disarms.
+Onboard FPV audio without carrying an extra GoPro or other action camera. This DIY project is a tiny, battery-free audio recorder for a quadcopter. The build uses a Seeed Studio XIAO ESP32S3 Sense with its microphone board, powered from the flight controller. The firmware starts a recording when the quad arms and closes it when the quad disarms.
 
-**Project status:** Pre-release, bench-tested 2026-10-18; flight test pending. [Firmware v2](firmware/v2/README.md) records to the XIAO's internal flash (no microSD) and shows up on a computer as a read-only USB drive with one timestamped WAV per flight. It was flashed and tested on the bench over USB. The [V7 one-piece case](hardware/recorder-holder/README.md) has been printed in TPU, fitted and mounted on the drone. Earlier, on October 10, 2026, the earlier microSD firmware recorded on Betaflight arm/disarm with the harness and diode installed (props-off and indoor hand-held tests), and the first real-flight recordings followed on October 13. Firmware v2 has not yet recorded a flight or a live arm/disarm, and the V7 case hasn't been flown. This is not yet a flight-proven release.
+**Project status: core build and real-flight milestone complete (2026-10-22).** The SD-free [firmware v2](firmware/v2/README.md) flew in the [V7 one-piece TPU case](hardware/recorder-holder/README.md) and retained a 110.18-second onboard recording with zero missing encoded frames. Recording followed Betaflight arm/disarm and used the flight controller’s clock. See the [flight-test report](docs/flight-test-2026-10-22.md) and [flight video with onboard audio](https://rsmith4321.github.io/fpv-audio-recorder/#flight-test).
+
+**Known issues:** USB sometimes needs a recorder reset before the drive appears. Easy Eject does not yet support v2, and the firmware and case downloads remain **pre-releases**. The [field report](docs/flight-test-2026-10-22.md#remaining-work) describes the post-flight USB candidate and remaining validation.
 
 The public progress page is at <https://rsmith4321.github.io/fpv-audio-recorder/>.
 
 ![Camera-free recorder prototype](images/06-audio-recorder-stack.jpg)
 
-Follow the [photographed prototype build](docs/build.md) for camera removal, the four recorder wires, and the planned diode connection. For the Flywoo build, see the [connector installation plan](docs/flywoo-goku-f405-se.md): no soldering onto the flight controller, using its UART1 socket and supplied harness. **Next: flight-test firmware v2 in the V7 case.**
+Follow the [photographed prototype build](docs/build.md) for camera removal, the four recorder wires, and the diode connection. For the Flywoo build, see the [connector installation guide](docs/flywoo-goku-f405-se.md): no soldering onto the flight controller, using its UART1 socket and supplied harness.
 
 ## What has been verified
+
+Firmware v2 in the V7 case (real-flight test, 2026-10-22):
+
+- Two readable 16 kHz mono WAVs, 110.18 s and 2.82 s, with durations matching `FLIGHTS.CSV`.
+- Both recording entries report `DISARM`, the flight controller's clock and no overwritten start. Separately fetched raw Opus streams have zero missing encoded frames.
+- The longer recording contains sustained, changing motor/propeller sound; the case was flown with the recorder installed. See the [field report](docs/flight-test-2026-10-22.md) for audio measurements and test limits.
 
 Firmware v2 (bench, 2026-10-18, USB power):
 
@@ -21,7 +29,7 @@ Firmware v2 (bench, 2026-10-18, USB power):
 
 Earlier microSD firmware (v0.1.0, then a −12 dB gain build that wasn't published separately):
 
-- Recorded on Betaflight arm/disarm from the flight controller's 4.5 V socket through the diode (October 10), then 16 outdoor flight recordings on October 13 with every file closed cleanly and no clipped samples.
+- Recorded on Betaflight arm/disarm from the flight controller's 4.5 V socket through the diode (October 10), then 16 outdoor flight recordings on October 13 with every file closed cleanly.
 
 ## Using it
 
@@ -37,7 +45,7 @@ The microphone opening is on the exposed face of the Sense board. The four wires
 
 ## Firmware v2: the recorder as a USB drive
 
-[Firmware v2](firmware/v2/README.md) (pre-release, bench-tested 2026-10-18; flight test pending):
+[Firmware v2](firmware/v2/README.md) (pre-release, flown 2026-10-22):
 
 - Plug the recorder into a computer and it appears as a read-only USB drive, `FPVAUDIO`, with **one WAV per flight**, `FLIGHTS.CSV` and a `README.TXT`.
 - Files are named by the flight controller's clock, e.g. `FPV_20261018173825_P0005_F01.WAV`, and carry a Broadcast WAV time reference so editors can place them by time of day.
@@ -47,19 +55,18 @@ The microphone opening is on the exposed face of the Sense board. The four wires
 
 ## 3D-printed case
 
-The [V7 one-piece TPU sleeve](hardware/recorder-holder/README.md) (23.76 × 20.68 × 11.18 mm, 2.15 g) holds the SD-free recorder, which slides in from the back with no lid or glue. It has a mic grille and B/R button holes. Print it standing, USB face down, as saved, and dry the TPU first. **Bench-tested 2026-10-18; flight test pending.** The previous [V6.5 two-piece case](hardware/recorder-holder/v6.5/README.md) remains for microSD builds. Alternative designs and improvements are welcome through pull requests or issues.
+The [V7 one-piece TPU sleeve](hardware/recorder-holder/README.md) (23.76 × 20.68 × 11.18 mm, 2.15 g) holds the SD-free recorder, which slides in from the back with no lid or glue. It has a mic grille and B/R button holes. Print it standing, USB face down, as saved, and dry the TPU first. **Flown with firmware v2 on 2026-10-22.** The previous [V6.5 two-piece case](hardware/recorder-holder/v6.5/README.md) remains for microSD builds. Alternative designs and improvements are welcome through pull requests or issues.
 
 ![V7 case on the drone](hardware/recorder-holder/v7/photos/v7-on-drone.jpg)
 
-## Next milestones
+## Remaining follow-up
 
-- Flight-test firmware v2 and the V7 case: arm/disarm with the flight controller's clock, audio level, wind noise, retention and temperature.
-- Update the Easy Eject recorder mode to find the v2 USB device, then move `firmware/latest.json` to v2.
-- Package the verified local Easy Eject flow for release, with a documented recovery path.
+- Finish USB startup/reconnect validation and Easy Eject v2 integration before promoting the firmware release or update manifest.
+- Continue evaluating wind protection, repeated-flight case retention and operating temperature. Details are in the [field report](docs/flight-test-2026-10-22.md#remaining-work).
 
 ## Scope of this repository
 
-This public repository holds the project page, the case designs, and the versioned firmware source and images. Bench audio, personal recordings, raw flash backups, personal device identifiers, and unrelated local build artifacts are intentionally excluded.
+This public repository holds the project page, the case designs, and the versioned firmware source and images. The flight-test video is a deliberately selected public sample. Private recordings, bench audio, raw flash backups, personal device identifiers, and unrelated local build artifacts are excluded.
 
 ## Related work
 
